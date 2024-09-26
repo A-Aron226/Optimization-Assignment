@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+    [SerializeField] Score score;
 
     void Awake ()
     {
@@ -75,6 +76,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
         ScoreManager.score += scoreValue;
+        score.score += scoreValue;
         Destroy (gameObject, 2f);
     }
 }

@@ -6,6 +6,8 @@ public class ScoreManager : MonoBehaviour
 {
     public static int score;
 
+    [SerializeField] Score scoreStat;
+
 
     [SerializeField] Text text;
 
@@ -13,11 +15,13 @@ public class ScoreManager : MonoBehaviour
     void Awake ()
     {
         score = 0;
+
+        scoreStat.score = score;
     }
 
 
     void Update ()
     {
-        text.text = "Score: " + score;
+        text.text = "Score: " + scoreStat.score;
     }
 }
