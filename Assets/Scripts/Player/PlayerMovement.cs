@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -55,4 +56,12 @@ public class PlayerMovement : MonoBehaviour
 
 		anim.SetBool("IsWalking", walking);
 	}
+
+    public void OnMove()
+    {
+		//movement = movement.normalized * speed * Time.deltaTime;
+        //playerRigidbody.MovePosition(transform.position + movement);
+
+        Debug.Log("New Input detected");
+    }
 }

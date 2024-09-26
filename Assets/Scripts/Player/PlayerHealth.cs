@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] HealthStat current;
+    [SerializeField] HealthStat max;
+
     public int startingHealth = 100;
-    public int currentHealth;
+    //public int currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
@@ -29,13 +33,17 @@ public class PlayerHealth : MonoBehaviour
         playerAudio = GetComponent <AudioSource> ();
         playerMovement = GetComponent <PlayerMovement> ();
         playerShooting = GetComponentInChildren <PlayerShooting> ();
-        currentHealth = startingHealth;
+        //currentHealth = startingHealth;
+        current.health = max.health;
+        currentHealth = max.health;
     }
 
 
     void Update ()
     {
-        if(damaged)
+        damageImage.fillAmount = current.health / max.health;
+
+        if (damaged)
         {
             damageImage.color = flashColour;
         }
@@ -51,15 +59,23 @@ public class PlayerHealth : MonoBehaviour
     {
         damaged = true;
 
-        currentHealth -= amount;
+        //currentHealth -= amount;
+        current.health -= amount;
 
-        healthSlider.value = currentHealth;
+        //healthSlider.value = currentHealth;
+
+        healthSlider.value = current.health;
 
         playerAudio.Play ();
 
-        if(currentHealth <= 0 && !isDead)
+        /*if(currentHealth <= 0 && !isDead)
         {
             Death ();
+        }*/
+
+        if (current.health <= 0 && !isDead)
+        {
+            Death();
         }
     }
 
