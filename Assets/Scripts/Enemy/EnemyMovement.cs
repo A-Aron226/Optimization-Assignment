@@ -4,9 +4,33 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    Transform player;
+
+    EnemyHealth enemyHealth;
+    NavMeshAgent agent;
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerMovement>().transform;
+
+        enemyHealth = GetComponent<EnemyHealth>();
+        agent = GetComponent<NavMeshAgent>();
+
+    }
     void Update ()
     {
-        Transform player = FindObjectOfType<PlayerMovement>().transform;
+
+        if (enemyHealth.currentHealth > 0 && player.GetComponent<PlayerHealth>().currentHealth > 0)
+        {
+            agent.SetDestination(player.position);
+        }
+
+        else
+        {
+            agent.enabled = false;
+        }
+
+
+        /*Transform player = FindObjectOfType<PlayerMovement>().transform;
 
         if (GetComponent<EnemyHealth>().currentHealth > 0 && player.GetComponent<PlayerHealth>().currentHealth > 0)
         {
@@ -15,6 +39,6 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             GetComponent<NavMeshAgent>().enabled = false;
-        }
+        }*/
     }
 }
