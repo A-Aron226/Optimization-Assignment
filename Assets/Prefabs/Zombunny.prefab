@@ -5230,9 +5230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   score: {fileID: 11400000, guid: 27f8be21de716a645ae88f12f30af532, type: 2}
+  maxHP: {fileID: 11400000, guid: 50c8d5ed1231054428291ac098b937b2, type: 2}

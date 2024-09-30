@@ -2,7 +2,7 @@
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
+    //public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
     bool isSinking;
 
     [SerializeField] Score score;
+    int Id_dead = Animator.StringToHash("Dead");
+    [SerializeField] EnemyHPData maxHP;
 
     void Awake ()
     {
@@ -25,7 +27,8 @@ public class EnemyHealth : MonoBehaviour
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
-        currentHealth = startingHealth;
+        //currentHealth = startingHealth;
+        currentHealth = maxHP.hp;
     }
 
 
@@ -63,7 +66,7 @@ public class EnemyHealth : MonoBehaviour
 
         capsuleCollider.isTrigger = true;
 
-        anim.SetTrigger ("Dead");
+        anim.SetTrigger (Id_dead);
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
