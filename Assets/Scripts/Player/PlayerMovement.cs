@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
 	private int floorMask;
 	private float camRayLength = 100f;
 
+	IA_PlayerActions input;
+	int id_walk = Animator.StringToHash("IsWalking");
+
 	void Awake()
 	{
 		floorMask = LayerMask.GetMask("Floor");
@@ -22,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		float h = Input.GetAxisRaw("Horizontal");
 		float v = Input.GetAxisRaw("Vertical");
+
 
 		Move(h, v);
 		Turning();
@@ -54,13 +60,22 @@ public class PlayerMovement : MonoBehaviour
 	{
 		bool walking = h != 0f || v != 0f;
 
-		anim.SetBool("IsWalking", walking);
+		//anim.SetBool("IsWalking", walking);
+		anim.SetBool(id_walk, walking);
 	}
 
     public void OnMove()
     {
-		//movement = movement.normalized * speed * Time.deltaTime;
+        //movement = movement.normalized * speed * Time.deltaTime;
         //playerRigidbody.MovePosition(transform.position + movement);
+
+        /*input.Movement.Move.performed += ctx =>
+		{
+			var rawInput = input.Movement.Move.ReadValue<Vector2>();
+			movement = movement.normalized * speed * Time.deltaTime;
+		};
+
+		input.Movement.Move.canceled += ctx => { movement = Vector3.zero; };*/
 
         Debug.Log("New Input detected");
     }
