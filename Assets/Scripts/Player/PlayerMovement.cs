@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
+		//float h = Input.GetAxisRaw("Horizontal");
+		//float v = Input.GetAxisRaw("Vertical");
 
+		float h = Horizontal;
+		float v = Vertical;
 
-		Move(h, v);
-		Turning();
+        Move(h, v);
+        Turning();
 		Animating(h, v);
 	}
 
@@ -64,19 +66,47 @@ public class PlayerMovement : MonoBehaviour
 		anim.SetBool(id_walk, walking);
 	}
 
-    public void OnMove()
+    public void OnMove() //Here in case I want to change input system back to this
     {
-        //movement = movement.normalized * speed * Time.deltaTime;
-        //playerRigidbody.MovePosition(transform.position + movement);
 
-        /*input.Movement.Move.performed += ctx =>
-		{
-			var rawInput = input.Movement.Move.ReadValue<Vector2>();
-			movement = movement.normalized * speed * Time.deltaTime;
-		};
-
-		input.Movement.Move.canceled += ctx => { movement = Vector3.zero; };*/
-
-        Debug.Log("New Input detected");
     }
+
+	float Vertical //temp New input for checking if the W or S key have been pressed
+	{ get
+		{
+			var keyboard = Keyboard.current;
+			var vertical = 0;
+
+			if (keyboard.wKey.isPressed)
+			{
+				vertical = 1;
+			}
+			else if (keyboard.sKey.isPressed)
+			{
+				vertical = -1;
+			}
+
+			return vertical;
+		}
+	}
+
+	float Horizontal //temp New input for checking if the A or D key have been pressed
+    { get
+		{
+			var keyboard = Keyboard.current;
+			var horizontal = 0;
+
+			if (keyboard.dKey.isPressed)
+			{
+				horizontal = 1;
+			}
+			else if (keyboard.aKey.isPressed)
+			{ 
+				horizontal= -1;
+			}
+
+			return horizontal;
+		}
+	}
+
 }
