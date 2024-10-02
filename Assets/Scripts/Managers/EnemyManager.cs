@@ -9,17 +9,10 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
 
-    //[SerializeField] EnemyPool pool;
     void Start ()
     {
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
-
-
-    /*void Update()
-    {
-
-    }*/
 
 
     void Spawn ()

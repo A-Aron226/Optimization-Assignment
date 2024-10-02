@@ -41,12 +41,7 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-   /* void Update()
-    {
-        
-    }*/
-   /*public GameObject GetPooledObject()
+   /*public GameObject GetPooledObject() //For pooling only one object
     {
         for (int i = 0; i < enemyAmount; i++)
         {
@@ -58,7 +53,7 @@ public class EnemyPool : MonoBehaviour
         return null;
     }*/
 
-    public GameObject GetPooledObject(string tag)
+    public GameObject GetPooledObject(string tag) //For pooling multiple objects
     {
         for (int i = 0; i < pooledObjects.Count; i++)
         {
