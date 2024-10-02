@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
 
-    [SerializeField] EnemyPool pool;
+    //[SerializeField] EnemyPool pool;
     void Start ()
     {
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
         //Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-        enemy = pool.GetPooledObject();
+        enemy = EnemyPool.SharedInstance.GetPooledObject("Enemy");
         if (enemy != null)
         {
             enemy.transform.position = spawnPoints[spawnPointIndex].position;

@@ -3,40 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemyPool : MonoBehaviour
+[System.Serializable]
+public class ObjectPoolItem
 {
-    public static ObjectPool<EnemyManager> SharedInstance;
-    //public EnemyManager manager;
     public GameObject enemy;
     public int enemyAmount;
-    public List<GameObject> pooledObjects;
+}
 
-    Queue<EnemyManager> remainingEnemies = new Queue<EnemyManager>();
+public class EnemyPool : MonoBehaviour
+{
+    public static EnemyPool SharedInstance;
+    /*public GameObject enemy;
+    //public EnemyManager manager;
+    public int enemyAmount;*/
+    public List<GameObject> pooledObjects;
+    public List<ObjectPoolItem> itemsToPool;
 
     private void Awake()
     {
-
+        SharedInstance = this;
     }
     // Start is called before the first frame update
     void Start()
     {
 
         pooledObjects = new List<GameObject>();
-        GameObject tmp;
-
-        for (int i = 0; i < enemyAmount; i++)
+        foreach (ObjectPoolItem item in itemsToPool)
         {
-            tmp = Instantiate(enemy);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            GameObject tmp;
+
+            for (int i = 0; i < item.enemyAmount; i++)
+            {
+                tmp = (GameObject)Instantiate(item.enemy);
+                tmp.SetActive(false);
+                pooledObjects.Add(tmp);
+            }
         }
-
-        /*for (int i = 0; i < enemyAmount; i++)
-        {
-            var newEnemy = Instantiate(manager);
-            //newEnemy.SetPool(this);
-            newEnemy.gameObject.SetActive(false);
-        }*/
     }
 
     // Update is called once per frame
@@ -44,13 +46,36 @@ public class EnemyPool : MonoBehaviour
     {
         
     }*/
-   public GameObject GetPooledObject()
+   /*public GameObject GetPooledObject()
     {
         for (int i = 0; i < enemyAmount; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
             {
                 return pooledObjects[i];
+            }
+        }
+        return null;
+    }*/
+
+    public GameObject GetPooledObject(string tag)
+    {
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
+            {
+                return pooledObjects[i];
+            }
+        }
+
+        foreach (ObjectPoolItem item in itemsToPool)
+        {
+            if (item.enemy.tag == tag)
+            {
+                GameObject obj = (GameObject)Instantiate(item.enemy);
+                obj.SetActive(false);
+                pooledObjects.Add(obj);
+                return obj;
             }
         }
         return null;
