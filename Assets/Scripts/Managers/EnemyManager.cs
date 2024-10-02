@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -8,16 +9,17 @@ public class EnemyManager : MonoBehaviour
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
 
-
+    [SerializeField] EnemyPool pool;
     void Start ()
     {
         InvokeRepeating ("Spawn", spawnTime, spawnTime);
     }
 
-    void Update()
+
+    /*void Update()
     {
 
-    }
+    }*/
 
 
     void Spawn ()
@@ -34,6 +36,13 @@ public class EnemyManager : MonoBehaviour
 
         int spawnPointIndex = Random.Range (0, spawnPoints.Length);
 
-        Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        //Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        enemy = pool.GetPooledObject();
+        if (enemy != null)
+        {
+            enemy.transform.position = spawnPoints[spawnPointIndex].position;
+            enemy.transform.rotation = spawnPoints[spawnPointIndex].rotation;
+            enemy.SetActive(true);
+        }
     }
 }

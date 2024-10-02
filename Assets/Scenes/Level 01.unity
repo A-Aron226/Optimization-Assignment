@@ -472,6 +472,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364300062}
   m_CullTransparentMesh: 0
+--- !u!1 &567241898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567241900}
+  - component: {fileID: 567241899}
+  - component: {fileID: 567241902}
+  - component: {fileID: 567241901}
+  m_Layer: 0
+  m_Name: EnemyPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &567241899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567241898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236fcde4b153547469fde8bda1c5810d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1819768538276330, guid: ebed7a3ef4be5458fb88a3c3a689c566, type: 3}
+  enemyAmount: 10
+  pooledObjects: []
+--- !u!4 &567241900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567241898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.083947346, y: 5.660772, z: -9.084188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &567241901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567241898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236fcde4b153547469fde8bda1c5810d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1161934229116340, guid: 78e1368557eab4d62a5487e98c1b5c5f, type: 3}
+  enemyAmount: 20
+  pooledObjects: []
+--- !u!114 &567241902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567241898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236fcde4b153547469fde8bda1c5810d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1719079804300652, guid: 4e3b7f611582d4dc7a9dd318242ed5e3, type: 3}
+  enemyAmount: 30
+  pooledObjects: []
 --- !u!1 &598742632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1368,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24300000, guid: 8434b04884c414ac6b468e10945685e6,
         type: 2}
+    - target: {fileID: 114291914702536300, guid: 9e3e72cd89ef44f97afe08f9baaabc18,
+        type: 3}
+      propertyPath: moveAction.m_Id
+      value: b1d24b11-f6fe-4b38-8787-567ab75ee66e
+      objectReference: {fileID: 0}
     - target: {fileID: 114762724205432510, guid: 9e3e72cd89ef44f97afe08f9baaabc18,
         type: 3}
       propertyPath: max
@@ -1367,7 +1451,23 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 8ec45203ae7a1a54c9d02c355f983833, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1a195291-530b-4530-8efc-2dc292d0d125
+    m_ActionName: Movement/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1849,6 +1949,7 @@ MonoBehaviour:
   spawnTime: 3
   spawnPoints:
   - {fileID: 1456155940}
+  pool: {fileID: 567241899}
 --- !u!4 &2135234548
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,6 +1982,7 @@ MonoBehaviour:
   spawnTime: 10
   spawnPoints:
   - {fileID: 694235421}
+  pool: {fileID: 567241899}
 --- !u!114 &2135234550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,3 +2000,4 @@ MonoBehaviour:
   spawnTime: 3
   spawnPoints:
   - {fileID: 1084502847}
+  pool: {fileID: 567241899}
